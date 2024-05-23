@@ -1,9 +1,13 @@
 package com.example.dynamicPdf.service;
 
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.UUID;
 
+import org.springframework.stereotype.Service;
+
+import com.example.dynamicPdf.model.InvoiceDetails;
+import com.example.dynamicPdf.model.Item;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -13,14 +17,6 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
-
-import java.util.UUID;
-
-
-import org.springframework.stereotype.Service;
-
-import com.example.dynamicPdf.model.InvoiceDetails;
-import com.example.dynamicPdf.model.Item;
 
 @Service
 public class Services {
