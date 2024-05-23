@@ -1,20 +1,24 @@
 package com.example.dynamicPdf.controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dynamicPdf.model.InvoiceDetails;
 import com.example.dynamicPdf.service.Services;
 
 @RestController
-@RequestMapping("/api/pdf")
+@RequestMapping("/pdf")
 public class Controller {
 	
     @Autowired
@@ -25,7 +29,7 @@ public class Controller {
         try {
             String pdfFilePath = pdfService.generatePdf(invoice);
             return new ResponseEntity<>(pdfFilePath, HttpStatus.OK);
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             return new ResponseEntity<>("Error generating PDF", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
